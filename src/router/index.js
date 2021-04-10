@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import RedirectToGithub from '../components/RedirectToGithub'
+import CallBackFromGithub from '../components/CallBackFromGithub'
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
     path: '/auth',
     name: 'RedirectToGithub',
     component: RedirectToGithub
+  },
+  {
+    path: '/callback',
+    name: 'CallBackFromGithub',
+    component: CallBackFromGithub
   },
   {
     path: '/',
