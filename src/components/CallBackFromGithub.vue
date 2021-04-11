@@ -1,5 +1,7 @@
 <template>
-  <div>callback</div>
+<div>
+  ll
+</div>
 </template>
 
 <script>
@@ -15,10 +17,10 @@ export default {
     code,
   };
 
-  axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+  // axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+  // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
   axios
-    .post('https://github.com/login/oauth/access_token', body)
+    .post('http://github.com/login/oauth/access_token', body)
     .then((_res) => _res.data.access_token)
     .then((token) => {
       console.log('My token:', token);

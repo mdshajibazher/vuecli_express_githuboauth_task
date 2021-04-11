@@ -18,7 +18,7 @@ const routes = [
     component: RedirectToGithub
   },
   {
-    path: '/callback',
+    path: '/auth/callback',
     name: 'CallBackFromGithub',
     component: CallBackFromGithub
   },
@@ -41,6 +41,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('to --'+to.path);
+  next();
 })
 
 export default router
