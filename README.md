@@ -1,4 +1,4 @@
-# github auth app courtisy by MEDIUSWARE LTD
+# github auth app courtesy by MEDIUSWARE LTD
 
 
 ## Project setup process
