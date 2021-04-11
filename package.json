@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "express": "vue-cli-service express:watch",
+    "express:run": "vue-cli-service express:run"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
@@ -23,6 +25,7 @@
     "@vue/cli-service": "~4.5.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "vue-cli-plugin-express": "~1.0.2",
     "vue-template-compiler": "^2.6.11"
   }
 }
