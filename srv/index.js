@@ -3,7 +3,6 @@ const path = require('path');
 import axios from 'axios';
 import express from 'express';
 let vue_cli_client_url = "http://localhost:8080";
-var LocalStorage = require('node-localstorage').LocalStorage,
 
 export default (app, http) => {
   app.use(express.json());

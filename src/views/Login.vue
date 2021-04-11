@@ -17,8 +17,9 @@
 <script>
 export default {
   created(){
-      if(localStorage.getItem("github_access_token") != undefined){
-          this.$router.push({name: 'Home'})
+     let checktokenexist = Object.entries(this.$route.query).length;
+      if(checktokenexist >1){
+            this.$router.push({name: 'Home'})
       }
       this.express_server_url = express_server_url;
   },

@@ -1,7 +1,21 @@
 <template>
   <div class="row">
     <navbar/>
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+            repositories
+        </div>
+        <div class="card-body">
+           <form class="d-flex mb-3">
+        <input class="form-control me-2" v-model="searchQuery" type="search" placeholder="Search" aria-label="Search">
+      </form>
+            <ul>
+              <li v-for="(repo,index) in filterRepo" :key="index"><a :href="repo.clone_url">{{repo.name}}</a> <br></li>
+            </ul>
+        </div>
+      </div>
+    </div>
     <div class="col-md-6">
         <div class="card">
           <div class="card-header">
@@ -60,43 +74,61 @@ import Navbar from '../components/Navbar.vue';
 export default {
   mounted(){
     let checktokenexist = Object.entries(this.$route.query).length;
-    console.log(checktokenexist);
-    if((localStorage.github_access_token == undefined) && (checktokenexist <1)){
-      this.$router.push({ name:'Login' });
+    if(checktokenexist <1){
+       this.$router.push({ name:'Login' });
       return;
-    }else if(checktokenexist < 1){
-      localStorage.setItem('github_access_token',this.$route.query.token);
-      this.getUserData(this.$route.query.token);
     }else{
-      let token = localStorage.getItem("github_access_token");
-      this.getUserData(token);
+      this.getUserData(this.$route.query.token);
     }
-
-    
   },
   data(){
     return {
+      searchQuery: "",
       userinfo : {},
+      repositories: []
     }
   },
   methods:{
     getUserData(token){
       console.log(token)
         axios.defaults.headers.common['Authorization'] = 'token '+token;
+
         axios.get('https://api.github.com/user')
         .then((res) => {
           this.userinfo = res.data;
-            console.log(res);
+          this.getUserRepo(res.data.repos_url);
+          console.log(res);
+    
         })
         .catch( (e) => {
-          //localStorage.clear();
+          this.$router.push({ name:'Login' });
         })
+    },
+
+    getUserRepo(repos_url){
+      axios.get(repos_url)
+      .then( (res) => { 
+          this.repositories = res.data;
+      })
+      .catch( (e) => { 
+          console.log(e);
+      })
     }
+  },
+  computed: {
+    filterRepo(){
+      if(this.searchQuery){
+      return this.repositories.filter((item)=>{
+        return this.searchQuery.toLowerCase().split(' ').every(v => item.name.toLowerCase().includes(v))
+      })
+      }else{
+        return this.repositories;
+      }
+  }
   },
   name: 'Home',
   components: {
     Navbar
-
   }
 }
 </script>
