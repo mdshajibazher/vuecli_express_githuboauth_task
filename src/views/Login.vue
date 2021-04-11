@@ -1,13 +1,13 @@
 <template>
   <div class="row justify-content-center mt-5">
       <div class="col-md-4">
-        <div class="card">
+        <div class="card text-center">
             <div class="card-header">
                 Login
             </div>
             <div class="card-body">
-                <img :src="'../assets/Github-Mark.png'" alt="">
-                <a class="btn btn-dark" href="/auth">Login With Github</a>
+
+                    <a class="btn btn-github btn-block" :href="express_server_url+'/auth'"><img src="../assets/github.png" alt=""> <br> Login With Github</a>
             </div>
         </div>
       </div>
@@ -17,7 +17,15 @@
 <script>
 export default {
   created(){
-    console.log(process.env)
+      if(localStorage.getItem("github_access_token") != undefined){
+          this.$router.push({name: 'Home'})
+      }
+      this.express_server_url = express_server_url;
+  },
+  data(){
+    return{
+      express_server_url: "",
+    }
   }
 }
 </script>

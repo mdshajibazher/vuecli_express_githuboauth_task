@@ -6,10 +6,11 @@ import router from './router'
 import store from './store'
 //load scss
 import '../styles/main.scss'
+//jquery
 
 
-const GITHUB = { CLIENT_ID:  "7ef7954e7e6e706790f0", CLIENT_SECRET : "711c67b3335e624f87b31161668d923592cded62"};
-window.GITHUB = GITHUB;
+let express_server_url = "http://localhost:3000";
+window.express_server_url = express_server_url;
 
 Vue.config.productionTip = false
 
