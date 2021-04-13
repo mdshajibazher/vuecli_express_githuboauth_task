@@ -1,5 +1,5 @@
 # github auth app courtesy by MEDIUSWARE LTD
-
+![Drag Racing](public/logo.png)
 
 ## Project setup process
 `to setup project just clone and run this `
